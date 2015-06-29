@@ -1,0 +1,38 @@
+<h1>Crisis Details</h1>
+<br>
+<h3>Topic:</h3>
+<br>
+<%=@post.topic%>
+<br>
+<h3>Content</h3>
+<br>
+<%=@post.content%>
+<br>
+<br>
+<%=link_to "Back to Main", posts_path, :class=>"btn btn-primary"%>
+<%=link_to "Edit", edit_post_path(@post), :class=>"btn btn-primary"%>
+<br>
+<br>
+
+<table class="table">
+  <tr>
+    <th>Comments</th>
+
+    <th>Actions</th>
+  </tr>
+  <%@comments.each do |c|%>
+  <tr>
+    <td><%=c.speech%></td>
+    <td>
+      <%=link_to "Destroy", post_comment_path(c), :method=>:delete, :class=>"btn btn-primary"%>
+    </td>
+  </tr>
+  <%end%>
+</table>
+<br>
+<br>
+<h3>Leave a Comment</h2>
+  <%=form_for @comment, :url => post_comments_path(@post), :class=>"form" do |x|%>
+  <%=x.text_area :speech, :class=>"form-control"%>
+  <%=x.submit "Create"%>
+  <%end%>

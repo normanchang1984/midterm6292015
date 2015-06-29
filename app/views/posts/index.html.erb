@@ -1,0 +1,33 @@
+<h1>Crisis Posts</h1>
+<br>
+<br>
+
+<table class="table">
+
+  <tr>
+    <th>Topics</th>
+
+    <th>Actions</th>
+  </tr>
+  <%@posts.each do |p|%>
+  <tr>
+    <td><%=p.topic%></td>
+    <td>
+      <%=link_to "Show", post_path(p), :class=>"btn btn-primary"%>
+      <%=link_to "Destroy", post_path(p), :method=>:delete, :class=>"btn btn-primary"%>
+    </td>
+  </tr>
+  <%end%>
+</table>
+
+<br>
+<br>
+<p>Create a New Post</p>
+<br>
+<%=form_for @post, :url=>posts_path(@post), :class=>"form" do |f|%>
+<%=f.label :topic, "Topic"%>
+<%=f.text_field :topic, :class=>"form-control"%>
+<%=f.label :content, "Content"%>
+<%=f.text_area :content, :class=>"form-control"%>
+<%=f.submit "Create"%>
+<%end%>
